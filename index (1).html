@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Cab Dynamic Pricing</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+  <style>
+    .login{
+    top: 20%;
+    }
+  </style>
+</head>
+
+
+<body>
+ <div class="login">
+	<h1>Cab Price Prediction</h1>
+
+
+    <form action="{{ url_for('y_predict')}}" method="post">
+
+    	<input type="number" step="0.01" name="Distance" placeholder="Distance" required="required" />
+    	
+    	<select name="Cab Brand" required="required">
+		  <option value="" disabled selected>Cab Brand</option>
+		  <option value="Uber">Uber</option>
+		  <option value="Lyft">Lyft</option>
+		</select>
+		
+		<select name="Service Name" required="required">
+		  <option value="" disabled selected>Service Name</option>
+		  <option value="UberX">UberX (U)</option>
+          <option value="UberPool">UberPool (U)</option>
+		  <option value="UberXL">UberXL (U)</option>
+		  <option value="Black">Black (U)</option>
+		  <option value="Black SUV">Black SUV (U)</option> 
+		  <option value="WAV">WAV (U)</option>
+		  <option value="Taxi">Taxi (U)</option>
+		  
+		  <option value="Lyft">Lyft (L)</option>
+		  <option value="Lyft XL">Lyft XL (L)</option>
+		  <option value="Lux">Lux (L)</option>
+		  <option value="Lux Black">Lux Black (L)</option>
+		  <option value="Lux Black XL">Lux Black XL (L)</option>
+		  <option value="Shared">Shared (L)</option>
+		</select>
+		
+        <input type="number" step="0.1" name="Surge Multiplier" placeholder="Surge Multiplier" required="required" />
+		
+		<select name="Source" required="required">
+		  <option value="" disabled selected>Source</option>
+		  <option value="Theatre District">Theatre District</option>
+          <option value="Beacon Hill">Beacon Hill</option>
+		  <option value="North Station">North Station</option>
+		  <option value="West End">West End</option>
+		  <option value="Financial District">Financial District</option> 
+		  <option value="Back Bay">Back Bay</option>
+		  <option value="North End">North End</option>
+		  <option value="Fenway">Fenway</option>
+		  <option value="Boston University">Boston University</option>
+		  <option value="Northeastern University">Northeastern University</option>
+		  <option value="Haymarket Square">Haymarket Square</option>
+		  <option value="South Station">South Station</option>
+		</select>
+		
+		<select name="Destination" required="required">
+		  <option value="" disabled selected>Destination</option>
+		  <option value="Theatre District">Theatre District</option>
+          <option value="Beacon Hill">Beacon Hill</option>
+		  <option value="North Station">North Station</option>
+		  <option value="West End">West End</option>
+		  <option value="Financial District">Financial District</option> 
+		  <option value="Back Bay">Back Bay</option>
+		  <option value="North End">North End</option>
+		  <option value="Fenway">Fenway</option>
+		  <option value="Boston University">Boston University</option>
+		  <option value="Northeastern University">Northeastern University</option>
+		  <option value="Haymarket Square">Haymarket Square</option>
+		  <option value="South Station">South Station</option>
+		</select>
+		
+		<input type="number" step="0.01" name="Source Temperature" placeholder="Source Temperature" required="required" />
+		<input type="number" step="0.01" name="Source Cloudiness" placeholder="Source Cloudiness (Between 0 & 1)" required="required" />
+		<input type="number" step="0.00001" name="Source Rainfall" placeholder="Source Rainfall" required="required" />
+		<input type="number" step="0.01" name="Destination Temperature" placeholder="Destination Temperature" required="required" />
+		<input type="number" step="0.01" name="Destination Cloudiness" placeholder="Destination Cloudiness (Between 0 & 1)" required="required" />
+		<input type="number" step="0.00001" name="Destination Rainfall" placeholder="Destination Rainfall" required="required" />
+		
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    
+    </form>
+
+   <br>
+   <br>
+   {{ prediction_text }}
+
+ </div>
+
+
+</body>
+</html>
+
